@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:ping_meme/theme/colors.dart';
+import 'package:ping_meme/theme/typograhpy.dart';
+import 'package:ping_meme/utils/string_utils.dart';
+import 'package:ping_meme/utils/widgets/indicatorCustom.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +25,8 @@ class MyApp extends StatelessWidget {
 }
 
 class EntryScreen extends StatefulWidget {
+  const EntryScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _EntryScreen();
@@ -32,17 +37,14 @@ class _EntryScreen extends State<EntryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 227, 217, 217),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 227, 217, 217) ,
-        title: const Text("MemeSuper", style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w600),),
-      ),
-      body: const Center(
-        child: SpinKitThreeBounce(
-          color: Color.fromARGB(255, 21, 101, 167),
-          size: 18.0,
+        backgroundColor: AppColors.background,
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          title: Text(
+            AppStringConstant.titleName,
+            style: AppTypography.headerPrimary,
+          ),
         ),
-      ),
-    );
+        body: const IndicatorCustom());
   }
 }

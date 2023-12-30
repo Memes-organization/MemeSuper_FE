@@ -31,6 +31,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_spinkit: ^5.2.0
+  cached_network_image: ^3.3.0
+  # pdfx:
+  #   git:
+  #    url: 'https://github.com/ScerIO/packages.flutter'
+  #    ref: '4be9de9ffed5398fd7d5f44bbb07dcd3d3f1711b'
+  #    path: packages/pdfx
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -60,9 +66,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
