@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ping_meme/screens/test/startScreen.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/typograhpy.dart';
 import 'package:ping_meme/utils/string_utils.dart';
@@ -18,9 +19,9 @@ class MyApp extends StatelessWidget {
         title: 'Ping Meme',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+          useMaterial3: false,
         ),
-        home: EntryScreen());
+        home: const StartScreen());
   }
 }
 
@@ -42,7 +43,7 @@ class _EntryScreen extends State<EntryScreen> {
           backgroundColor: AppColors.primary,
           title: Text(
             AppStringConstant.titleName,
-            style: AppTypography.headerPrimary,
+            style: AppTypography.headerLight,
           ),
         ),
         body: const IndicatorCustom());
