@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ping_meme/screens/test.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/styles.dart';
 import 'package:ping_meme/theme/typograhpy.dart';
@@ -17,6 +18,18 @@ class _StartScreenState extends State<StartScreen> {
     return Scaffold(
         backgroundColor: AppColors.background,
         appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const MyHomePage(
+                                title: "Ping Meme",
+                              )));
+                },
+                icon: const Icon(Icons.home))
+          ],
           backgroundColor: AppColors.primary,
           title: const Text(
             AppStringConstant.titleName,
