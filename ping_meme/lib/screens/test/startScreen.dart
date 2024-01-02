@@ -1,5 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ping_meme/screens/test.dart';
+import 'package:ping_meme/services/imageSevice/image_picker.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/styles.dart';
 import 'package:ping_meme/theme/typograhpy.dart';
@@ -13,23 +16,13 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
+  ImagePickerrCustomize picker = ImagePickerrCustomize();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.background,
         appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const MyHomePage(
-                                title: "Ping Meme",
-                              )));
-                },
-                icon: const Icon(Icons.home))
-          ],
+          
           backgroundColor: AppColors.primary,
           title: const Text(
             AppStringConstant.titleName,
@@ -39,39 +32,67 @@ class _StartScreenState extends State<StartScreen> {
         body: SafeArea(
             child: Column(
           children: [
-            const Expanded(
-                child: Center(
-              child: Text(
-                "Photo Edittor",
-                style: AppTypography.bodyBold,
-              ),
-            )),
             Expanded(
                 child: Center(
-                    child: Row(
+                    child: Column(
               children: [
                 Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.all(10),
-                    child: ElevatedButton(
-                        style: AppStyles.buttonNormalStyle,
-                        onPressed: () {},
-                        child: const Text(
-                          "Gallery",
-                        )),
+                    child: Center(
+                  child: Text(
+                    "Get list here!",
+                    style: AppTypography.bodyBold,
                   ),
+                )),
+                Container(
+                  width: 300,
+                  margin: const EdgeInsets.all(5),
+                  child: ElevatedButton(
+                      style: AppStyles.buttonNormalStyle,
+                      onPressed: () {
+                        picker.onPickImageFormGallery(context: context);
+                      },
+                      child: const Text(
+                        "Gallery",
+                      )),
                 ),
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.all(10),
-                    child: ElevatedButton(
-                        style: AppStyles.buttonNormalStyle,
-                        onPressed: () {},
-                        child: const Text(
-                          "Camera",
-                        )),
-                  ),
-                )
+                Container(
+                  width: 300,
+                  margin: const EdgeInsets.all(5),
+                  child: ElevatedButton(
+                      style: AppStyles.buttonNormalStyle,
+                      onPressed: () {
+                        picker.onPickImageFormCamera(
+                            source: ImageSource.camera, context: context);
+                      },
+                      child: const Text(
+                        "Camera",
+                      )),
+                ),
+                Container(
+                  width: 300,
+                  margin: const EdgeInsets.all(5),
+                  child: ElevatedButton(
+                      style: AppStyles.buttonNormalStyle,
+                      onPressed: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (_) {
+                              final paths = picker.getListImagePath();
+                              return ListView.builder(
+                                itemBuilder: (_, index) {
+                                  return Container(
+                                    padding: EdgeInsets.all(12),
+                                    child: Image.file(File(paths[index])),
+                                  );
+                                },
+                                itemCount: paths.length,
+                              );
+                            });
+                      },
+                      child: const Text(
+                        "List",
+                      )),
+                ),
               ],
             ))),
           ],
