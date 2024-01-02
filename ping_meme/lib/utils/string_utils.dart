@@ -13,6 +13,15 @@ class StringUtils {
   }
 }
 
+class Constant {
+
+  static const  double paddingVertical = 8 ; 
+  static const  double  paddingHorizontal = 24 ; 
+
+
+  static const int margin = 16 ; 
+}
+
 class AppStringConstant {
-    static String titleName = "MemeSuper" ;  
+    static  const String titleName = "MemeSuper" ;  
 }

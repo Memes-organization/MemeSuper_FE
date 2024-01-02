@@ -7,7 +7,7 @@ class AppTypography {
     fontWeight: FontWeight.w600,
   );
 
-  static const headerLight = TextStyle(
+  static const headerLight  = TextStyle(
       fontSize: 18, color: AppColors.textLight, fontWeight: FontWeight.w600);
 
   static const bodyRegular = TextStyle(
