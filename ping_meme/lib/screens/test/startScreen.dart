@@ -1,7 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ping_meme/screens/test.dart';
+import 'package:ping_meme/screens/list%20image%20local%20upload/listImageLocalUpload.dart';
 import 'package:ping_meme/services/imageSevice/image_picker.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/styles.dart';
@@ -22,7 +21,6 @@ class _StartScreenState extends State<StartScreen> {
     return Scaffold(
         backgroundColor: AppColors.background,
         appBar: AppBar(
-          
           backgroundColor: AppColors.primary,
           title: const Text(
             AppStringConstant.titleName,
@@ -74,20 +72,28 @@ class _StartScreenState extends State<StartScreen> {
                   child: ElevatedButton(
                       style: AppStyles.buttonNormalStyle,
                       onPressed: () {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (_) {
-                              final paths = picker.getListImagePath();
-                              return ListView.builder(
-                                itemBuilder: (_, index) {
-                                  return Container(
-                                    padding: EdgeInsets.all(12),
-                                    child: Image.file(File(paths[index])),
-                                  );
-                                },
-                                itemCount: paths.length,
-                              );
-                            });
+                        // showModalBottomSheet(
+                        //     context: context,
+                        //     builder: (_) {
+                        //       final paths = picker.getListImagePath();
+                        //       return ListView.builder(
+                        //         itemBuilder: (_, index) {
+                        //           return Container(
+                        //             padding: EdgeInsets.all(12),
+                        //             child: Image.file(File(paths[index])),
+                        //           );
+                        //         },
+                        //         itemCount: paths.length,
+                        //       );
+                        //     });
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          final paths = picker.getListImagePath();
+                          return ListImageUpload(
+                            paths: paths,
+                          );
+                        }));
+                        ;
                       },
                       child: const Text(
                         "List",
