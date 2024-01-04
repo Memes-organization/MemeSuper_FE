@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/typograhpy.dart';
@@ -15,19 +16,19 @@ class ListImageUpload extends StatefulWidget {
 }
 
 class _ListImageUpload extends State<ListImageUpload> {
-  late ScrollController _scrollController;
   List<String> paths = [];
+  // ScrollController
   @override
   void initState() {
     paths = widget.paths;
-    _scrollController = ScrollController();
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.black,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -44,32 +45,128 @@ class _ListImageUpload extends State<ListImageUpload> {
         ),
       ),
       body: SafeArea(
-          child: Container(
-        child: TabBar(
-            // controller: tabController,
-            tabs: paths.map((e) {
-              return Container(
-                width: MediaQuery.sizeOf(context).width,
-                child: Image.file(File(e)),
-              );
-            }).toList()),
+          child: Column(
+        children: [
+          Expanded(
+            child: CarouselSlider.builder(
+              itemCount: paths.length,
+              itemBuilder:
+                  (BuildContext context, int itemIndex, int pageViewIndex) {
+                return Container(
+                  width: MediaQuery.sizeOf(context).width,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.file(File(paths[itemIndex])),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                            height: 30,
+                            width: 30,
+                            margin: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(Constant.radiusCircle),
+                              color: AppColors.black,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "${itemIndex + 1}",
+                                style: AppTypography.bodyBoldLight,
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              options: CarouselOptions(
+                  height: MediaQuery.sizeOf(context).height -
+                      300, // chưa đc scale tỉ lệ đàng hoàng
+                  initialPage: 0,
+                  viewportFraction: 1),
+            ),
+          ),
+          Divider(
+            color: AppColors.backgroundWhite,
+            height: 0.3,
+            thickness: 0.2,
+          ),
+          Container(
+            height: 70,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    child: IconButton(
+                      alignment: Alignment.centerRight,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.crop_rotate,
+                        color: AppColors.backgroundWhite,
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: IconButton(
+                      alignment: Alignment.centerRight,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.filter_alt,
+                        color: AppColors.backgroundWhite,
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: IconButton(
+                      alignment: Alignment.centerRight,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.adjust,
+                        color: AppColors.backgroundWhite,
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: IconButton(
+                      alignment: Alignment.centerRight,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.favorite,
+                        color: AppColors.backgroundWhite,
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: IconButton(
+                      alignment: Alignment.centerRight,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.delete,
+                        color: AppColors.backgroundWhite,
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: IconButton(
+                      alignment: Alignment.centerRight,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.more_horiz_outlined,
+                        color: AppColors.backgroundWhite,
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                ]),
+          )
+        ],
       )),
     );
   }
 }
-
-/*
-
-  child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (_, index) {
-            return Container(
-              width: MediaQuery.sizeOf(context).width,
-              padding: EdgeInsets.all(12),
-              child: Image.file(File(paths[index])),
-            );
-          },
-          itemCount: paths.length,
-        ),
-
-*/
