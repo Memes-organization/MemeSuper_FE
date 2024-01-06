@@ -18,10 +18,13 @@ class ListImageUpload extends StatefulWidget {
 
 class _ListImageUpload extends State<ListImageUpload> {
   List<String> paths = [];
+  late CarouselController carouseController;
   // ScrollController
+  int indexImage  =  0 ;
   @override
   void initState() {
     paths = widget.paths;
+    carouseController = CarouselController();
 
     super.initState();
   }
@@ -81,7 +84,18 @@ class _ListImageUpload extends State<ListImageUpload> {
                   ),
                 );
               },
+              carouselController: carouseController,
               options: CarouselOptions(
+                  // onScrolled: (index) {
+                  //   indexx = index ?? 0;
+                  //   print("Something is ${indexx}");
+                  // },
+                  onPageChanged: (indexx, reason) {
+                    setState(() {
+                      print("Something if one change: $indexImage");
+                      this.indexImage = indexx;
+                    });
+                  },
                   height: MediaQuery.sizeOf(context).height -
                       300, // chưa đc scale tỉ lệ đàng hoàng
                   initialPage: 0,
@@ -102,10 +116,13 @@ class _ListImageUpload extends State<ListImageUpload> {
                     child: IconButton(
                       alignment: Alignment.centerRight,
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => EditImage(
-                                  paths: paths[0],
-                                )));
+                        // carouseController.jumpToPage(3);
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) {
+                          return EditImage(
+                            paths: paths[indexImage],
+                          );
+                        }));
                       },
                       icon: Icon(
                         Icons.edit,

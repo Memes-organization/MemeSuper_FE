@@ -68,7 +68,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths[0],
+                                  pathImage: paths,
                                 )));
                       }),
                   buttonEditPhoto(
@@ -77,7 +77,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths[0],
+                                  pathImage: paths,
                                 )));
                       }),
                   buttonEditPhoto(
@@ -86,7 +86,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths[0],
+                                  pathImage: paths,
                                 )));
                       }),
                   buttonEditPhoto(
@@ -95,7 +95,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths[0],
+                                  pathImage: paths,
                                 )));
                       }),
                   buttonEditPhoto(
@@ -104,7 +104,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths[0],
+                                  pathImage: paths,
                                 )));
                       }),
                 ]),
