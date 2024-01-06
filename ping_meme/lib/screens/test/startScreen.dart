@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ping_meme/screens/list%20image%20local%20upload/listImageLocalUpload.dart';
-import 'package:ping_meme/services/imageSevice/image_picker.dart';
+import 'package:ping_meme/services/imageService/image_picker.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/styles.dart';
 import 'package:ping_meme/theme/typograhpy.dart';
@@ -86,14 +87,25 @@ class _StartScreenState extends State<StartScreen> {
                         //         itemCount: paths.length,
                         //       );
                         //     });
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          final paths = picker.getListImagePath();
-                          return ListImageUpload(
-                            paths: paths,
+                        final paths = picker.getListImagePath();
+                        if (paths.length > 0) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ListImageUpload(paths: paths);
+                          }));
+                        } else {
+                          showToast(
+                            'Please import Image into List?',
+                            context: context,
+                            animation: StyledToastAnimation.scale,
+                            reverseAnimation: StyledToastAnimation.fade,
+                            position: StyledToastPosition.center,
+                            animDuration: Duration(milliseconds: 500),
+                            duration: Duration(seconds: 3),
+                            curve: Curves.elasticOut,
+                            reverseCurve: Curves.linear,
                           );
-                        }));
-                        ;
+                        }
                       },
                       child: const Text(
                         "List",

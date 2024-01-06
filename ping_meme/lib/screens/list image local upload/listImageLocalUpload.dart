@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:ping_meme/screens/edit%20image/edit_image.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/typograhpy.dart';
 import 'package:ping_meme/utils/string_utils.dart';
@@ -100,9 +101,14 @@ class _ListImageUpload extends State<ListImageUpload> {
                   Container(
                     child: IconButton(
                       alignment: Alignment.centerRight,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => EditImage(
+                                  paths: paths[0],
+                                )));
+                      },
                       icon: Icon(
-                        Icons.crop_rotate,
+                        Icons.edit,
                         color: AppColors.backgroundWhite,
                         size: 24,
                       ),
@@ -113,29 +119,7 @@ class _ListImageUpload extends State<ListImageUpload> {
                       alignment: Alignment.centerRight,
                       onPressed: () {},
                       icon: Icon(
-                        Icons.filter_alt,
-                        color: AppColors.backgroundWhite,
-                        size: 24,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: IconButton(
-                      alignment: Alignment.centerRight,
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.adjust,
-                        color: AppColors.backgroundWhite,
-                        size: 24,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: IconButton(
-                      alignment: Alignment.centerRight,
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite,
+                        Icons.favorite_border,
                         color: AppColors.backgroundWhite,
                         size: 24,
                       ),
