@@ -1,8 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ping_meme/screens/test.dart';
-import 'package:ping_meme/services/imageSevice/image_picker.dart';
+import 'package:ping_meme/screens/list%20image%20local%20upload/listImageLocalUpload.dart';
+import 'package:ping_meme/services/imageService/image_picker.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/styles.dart';
 import 'package:ping_meme/theme/typograhpy.dart';
@@ -22,7 +22,6 @@ class _StartScreenState extends State<StartScreen> {
     return Scaffold(
         backgroundColor: AppColors.background,
         appBar: AppBar(
-          
           backgroundColor: AppColors.primary,
           title: const Text(
             AppStringConstant.titleName,
@@ -74,20 +73,39 @@ class _StartScreenState extends State<StartScreen> {
                   child: ElevatedButton(
                       style: AppStyles.buttonNormalStyle,
                       onPressed: () {
-                        showModalBottomSheet(
+                        // showModalBottomSheet(
+                        //     context: context,
+                        //     builder: (_) {
+                        //       final paths = picker.getListImagePath();
+                        //       return ListView.builder(
+                        //         itemBuilder: (_, index) {
+                        //           return Container(
+                        //             padding: EdgeInsets.all(12),
+                        //             child: Image.file(File(paths[index])),
+                        //           );
+                        //         },
+                        //         itemCount: paths.length,
+                        //       );
+                        //     });
+                        final paths = picker.getListImagePath();
+                        if (paths.length > 0) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ListImageUpload(paths: paths);
+                          }));
+                        } else {
+                          showToast(
+                            'Please import Image into List?',
                             context: context,
-                            builder: (_) {
-                              final paths = picker.getListImagePath();
-                              return ListView.builder(
-                                itemBuilder: (_, index) {
-                                  return Container(
-                                    padding: EdgeInsets.all(12),
-                                    child: Image.file(File(paths[index])),
-                                  );
-                                },
-                                itemCount: paths.length,
-                              );
-                            });
+                            animation: StyledToastAnimation.scale,
+                            reverseAnimation: StyledToastAnimation.fade,
+                            position: StyledToastPosition.center,
+                            animDuration: Duration(milliseconds: 500),
+                            duration: Duration(seconds: 3),
+                            curve: Curves.elasticOut,
+                            reverseCurve: Curves.linear,
+                          );
+                        }
                       },
                       child: const Text(
                         "List",

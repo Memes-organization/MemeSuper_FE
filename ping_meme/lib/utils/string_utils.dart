@@ -13,15 +13,18 @@ class StringUtils {
   }
 }
 
+
 class Constant {
 
   static const  double paddingVertical = 8 ; 
   static const  double  paddingHorizontal = 24 ; 
-
+  static const  double  radiusCircle = 24 ; 
+  static const  double  radius = 12 ; 
 
   static const int margin = 16 ; 
 }
 
 class AppStringConstant {
     static  const String titleName = "MemeSuper" ;  
+    static  const String editImage = "Edit photo" ;  
 }
