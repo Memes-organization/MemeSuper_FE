@@ -20,7 +20,7 @@ class _ListImageUpload extends State<ListImageUpload> {
   List<String> paths = [];
   late CarouselController carouseController;
   // ScrollController
-  int indexImage  =  0 ;
+  int indexImage = 0;
   @override
   void initState() {
     paths = widget.paths;
@@ -86,13 +86,8 @@ class _ListImageUpload extends State<ListImageUpload> {
               },
               carouselController: carouseController,
               options: CarouselOptions(
-                  // onScrolled: (index) {
-                  //   indexx = index ?? 0;
-                  //   print("Something is ${indexx}");
-                  // },
                   onPageChanged: (indexx, reason) {
                     setState(() {
-                      print("Something if one change: $indexImage");
                       this.indexImage = indexx;
                     });
                   },

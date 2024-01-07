@@ -17,11 +17,13 @@ class EditImage extends StatefulWidget {
 
 class _ListImageUpload extends State<EditImage> {
   String paths = '';
+  bool isConvert = false  ;
+  late Image imageCurrent ;  
   // ScrollController
   @override
   void initState() {
     paths = widget.paths;
-
+ imageCurrent = Image.file(File(widget.paths)) ;
     super.initState();
   }
 
@@ -30,6 +32,18 @@ class _ListImageUpload extends State<EditImage> {
     return Scaffold(
       backgroundColor: AppColors.black,
       appBar: AppBar(
+        actions: [
+          GestureDetector(
+            onTap: () {
+
+            },
+            child: Container(
+              margin: EdgeInsets.only(right: 13),
+              child: Center(
+              child: Text("Save") ,  
+            ),)
+          ) ,  
+         ],
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -49,7 +63,7 @@ class _ListImageUpload extends State<EditImage> {
         children: [
           Expanded(
             child: Center(
-              child: Image.file(File(widget.paths)),
+              child: imageCurrent ,
             ),
           ),
           Divider(
@@ -65,11 +79,14 @@ class _ListImageUpload extends State<EditImage> {
                   buttonEditPhoto(
                       title: "Crop",
                       icon: Icons.crop_rotate,
-                      functionOnPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
+                      functionOnPressed: () async {
+                        final value = await Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths,
+                                  pathImage: imageCurrent,
                                 )));
+                          setState(() {
+                            imageCurrent = value ;  
+                          });
                       }),
                   buttonEditPhoto(
                       title: "Insert",
@@ -77,7 +94,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths,
+                                  pathImage: imageCurrent ,
                                 )));
                       }),
                   buttonEditPhoto(
@@ -86,7 +103,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths,
+                                  pathImage: imageCurrent,
                                 )));
                       }),
                   buttonEditPhoto(
@@ -95,7 +112,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths,
+                                  pathImage: imageCurrent,
                                 )));
                       }),
                   buttonEditPhoto(
@@ -104,7 +121,7 @@ class _ListImageUpload extends State<EditImage> {
                       functionOnPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => ImageCroper(
-                                  pathImage: paths,
+                                  pathImage: imageCurrent,
                                 )));
                       }),
                 ]),

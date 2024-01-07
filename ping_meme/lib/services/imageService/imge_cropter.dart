@@ -1,12 +1,10 @@
-import 'dart:io';
-
 import 'package:crop_image/crop_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_meme/theme/colors.dart';
 import 'package:ping_meme/theme/typograhpy.dart';
 
 class ImageCroper extends StatefulWidget {
-  final String pathImage;
+  final Image pathImage;
 
   const ImageCroper({Key? key, required this.pathImage}) : super(key: key);
 
@@ -15,6 +13,8 @@ class ImageCroper extends StatefulWidget {
 }
 
 class _ImageCroper extends State<ImageCroper> {
+  bool isCroped = false;
+  late Image imageCropCurrent;
   final controllerCrop = CropController(
     aspectRatio: 1,
     defaultCrop: const Rect.fromLTRB(0.2, 0.1, 0.9, 0.9),
@@ -22,6 +22,7 @@ class _ImageCroper extends State<ImageCroper> {
 
   @override
   void initState() {
+    imageCropCurrent = widget.pathImage;
     super.initState();
   }
 
@@ -37,6 +38,69 @@ class _ImageCroper extends State<ImageCroper> {
       backgroundColor: AppColors.black,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
+        leading: GestureDetector(
+          onTap: () async {
+            if (isCroped) {
+              final isSave = await showDialog(
+                  context: context,
+                  builder: (_) {
+                    return Dialog(
+                      child: Container(
+                        height: 120,
+                        width: 280,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 12, left: 16),
+                              child: Text(
+                                "Anounce",
+                                style: AppTypography.bodyBold,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 12, left: 16),
+                              child: Text("Do u want save this imgae croped?"),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 12),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  SimpleDialogOption(
+                                    onPressed: () =>
+                                        Navigator.pop(context, false),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  SimpleDialogOption(
+                                    onPressed: () async {
+                                      Navigator.pop(context, true);
+                                    },
+                                    child: const Text('Save'),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  });
+              final image = await controllerCrop.croppedImage();
+              isSave
+                  ? Navigator.pop(context, image)
+                  : Navigator.of(context).pop();
+            } else {
+              Navigator.of(context).pop();
+            }
+          },
+          child: Icon(
+            Icons.arrow_back_ios,
+            size: 18,
+          ),
+        ),
         title: Text(
           "Crop Image",
           style: AppTypography.headerLight,
@@ -45,7 +109,10 @@ class _ImageCroper extends State<ImageCroper> {
       body: Center(
         child: CropImage(
           controller: controllerCrop,
-          image: Image.file(File(widget.pathImage)),
+          onCrop: (rect) {
+            isCroped = true;
+          },
+          image: imageCropCurrent,
           alwaysMove: true,
         ),
       ),
@@ -82,7 +149,10 @@ class _ImageCroper extends State<ImageCroper> {
             ),
             TextButton(
               onPressed: _finished,
-              child: const Text('Done', style: AppTypography.bodyBoldLight,),
+              child: const Text(
+                'Done',
+                style: AppTypography.bodyBoldLight,
+              ),
             ),
           ],
         ),
@@ -138,25 +208,6 @@ class _ImageCroper extends State<ImageCroper> {
 
   Future<void> _finished() async {
     final image = await controllerCrop.croppedImage();
-    // ignore: use_build_context_synchronously
-    await showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          contentPadding: const EdgeInsets.all(6.0),
-          titlePadding: const EdgeInsets.all(8.0),
-          title: const Text('Cropped image'),
-          children: [
-           
-            const SizedBox(height: 5),
-            image,
-            TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('OK', style: AppTypography.headerPrimary,),
-            ),
-          ],
-        );
-      },
-    );
+    Navigator.pop(context, image);
   }
 }
