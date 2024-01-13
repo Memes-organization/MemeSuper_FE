@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:crop_image/crop_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_meme/theme/colors.dart';
@@ -11,14 +13,13 @@ class ImageCroper extends StatefulWidget {
   @override
   State<ImageCroper> createState() => _ImageCroper();
 }
-
 class _ImageCroper extends State<ImageCroper> {
   bool isCroped = false;
   late Image imageCropCurrent;
   final controllerCrop = CropController(
     aspectRatio: 1,
     defaultCrop: const Rect.fromLTRB(0.2, 0.1, 0.9, 0.9),
-  );
+  ) ;
 
   @override
   void initState() {
