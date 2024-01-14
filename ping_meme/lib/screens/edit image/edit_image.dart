@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ping_meme/services/imageService/imge_cropter.dart';
-import 'package:ping_meme/theme/colors.dart';
-import 'package:ping_meme/theme/typograhpy.dart';
-import 'package:ping_meme/utils/string_utils.dart';
+import 'package:ping_meme/core/services/imageService/imge_cropter.dart';
+import 'package:ping_meme/core/utils/theme/colors.dart';
+import 'package:ping_meme/core/utils/theme/typograhpy.dart';
+import 'package:ping_meme/core/utils/string_utils.dart';
 
 class EditImage extends StatefulWidget {
   final String paths;

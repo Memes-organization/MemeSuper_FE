@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_meme/screens/edit%20image/edit_image.dart';
-import 'package:ping_meme/theme/colors.dart';
-import 'package:ping_meme/theme/typograhpy.dart';
-import 'package:ping_meme/utils/string_utils.dart';
+import 'package:ping_meme/core/utils/theme/colors.dart';
+import 'package:ping_meme/core/utils/theme/typograhpy.dart';
+import 'package:ping_meme/core/utils/string_utils.dart';
 
 class ListImageUpload extends StatefulWidget {
   final List<String> paths;
