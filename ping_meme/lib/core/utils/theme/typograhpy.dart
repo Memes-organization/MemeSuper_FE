@@ -8,6 +8,7 @@ class AppTypography {
   static const header = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
+    color: AppColors.black
   );
 
   static const headerLight = TextStyle(

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_meme/core/utils/theme/colors.dart';
 
-
 class CustomImage extends StatelessWidget {
   final String url;
   final String name;
@@ -11,7 +10,8 @@ class CustomImage extends StatelessWidget {
   final double fontSize;
   final BoxFit fit;
   const CustomImage(
-      {super.key, required this.url,
+      {super.key,
+      required this.url,
       this.name = '',
       required this.size,
       this.radius = 0,
@@ -63,7 +63,8 @@ class CustomImage2 extends StatelessWidget {
   final double fontSize;
   final BoxFit fit;
   const CustomImage2(
-      {super.key, required this.url,
+      {super.key,
+      required this.url,
       this.name = '',
       required this.height,
       this.width,
@@ -105,6 +106,39 @@ class CustomImage2 extends StatelessWidget {
                   ));
         },
       ),
+    );
+  }
+}
+
+class CustomImage3 extends StatelessWidget {
+  final String path;
+  final String name;
+  final double height ; 
+  final double width ; 
+  final double radius;
+  final double fontSize;
+  final BoxFit fit;
+  const CustomImage3(
+      {super.key,
+      required this.path,
+      this.name = '',
+      this.height = 250 ,  
+      this.width = 200 ,   
+      this.radius = 0,
+      this.fontSize = 16,
+      this.fit = BoxFit.cover});
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 2/3,
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(radius),
+          child: Image.asset(
+            path,
+            width: width,
+            fit:fit,
+            height: height,
+          )),
     );
   }
 }

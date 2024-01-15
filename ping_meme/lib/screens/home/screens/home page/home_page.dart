@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:ping_meme/core/utils/string_utils.dart';
-import 'package:ping_meme/core/utils/theme/assets.gen.dart';
+
 import 'package:ping_meme/core/utils/theme/colors.dart';
 import 'package:ping_meme/core/utils/theme/typograhpy.dart';
+import 'package:ping_meme/core/utils/widgets/imageAssetsCustom.dart';
+import 'package:ping_meme/core/utils/widgets/indicatorCustom.dart';
 
-import 'package:ping_meme/core/utils/widgets/wrapper_icon_svg.dart';
 import 'package:ping_meme/screens/home/home_controller.dart';
+import 'package:ping_meme/screens/home/widgets/home_header_widget.dart';
 
 class FeedPage extends StatefulWidget {
   @override
@@ -33,24 +37,11 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
         ),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                WrapperIconSVG(
-                  icon: Assets.iconsIcFile,
-                ),
-                Text(
-                  "Feed",
-                  style: AppTypography.headerPrimary,
-                ),
-                WrapperIconSVG(
-                  icon: Assets.iconsIcResearch,
-                )
-              ],
-            ),
+            HomeHeader(),
             TabBar(
               isScrollable: true,
               indicatorWeight: 1,
+              padding: EdgeInsets.only(bottom: 10),
               tabAlignment: TabAlignment.start,
               automaticIndicatorColorAdjustment: false,
               indicatorSize: TabBarIndicatorSize.label,
@@ -64,9 +55,75 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
               controller: _controller.tabController.value,
               tabs: _controller.tabViewHome(),
             ),
+            Expanded(
+              child: TabBarView(
+                  physics: NeverScrollableScrollPhysics(),
+                  controller: _controller.tabController.value,
+                  children: [
+                    tabViewAll_Mock(),
+                    loadingdataTMP(),
+                    loadingdataTMP(),
+                    loadingdataTMP(),
+                    loadingdataTMP(),
+                    loadingdataTMP(),
+                  ]),
+            )
           ],
         ),
       ),
     );
+  }
+
+  tabViewAll_Mock() {
+    return GridView.builder(
+        itemCount: 12,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            childAspectRatio: 200 / 325),
+        itemBuilder: (context, index) {
+          return elementPost(index);
+        });
+  }
+
+//"assets/images/mock/image_01.jpg"
+  elementPost(int index) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+
+          child: CustomImage3(
+            radius: 12,
+            path: "assets/images/mock/image_$index.jpg",
+          ),
+        ),
+        Text(
+          "Image $index",
+          style: AppTypography.header,
+        )
+      ],
+    );
+  }
+  /*
+
+  */
+
+  loadingdataTMP() {
+    return Container(
+        child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IndicatorCustom(),
+          Text(
+            "Loading data",
+            style: AppTypography.bodyRegularLight,
+          )
+        ],
+      ),
+    ));
   }
 }

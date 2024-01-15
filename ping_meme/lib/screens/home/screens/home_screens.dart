@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:ping_meme/core/utils/theme/assets.gen.dart';
 import 'package:ping_meme/core/utils/theme/colors.dart';
+import 'package:ping_meme/core/utils/widgets/indicatorCustom.dart';
 import 'package:ping_meme/screens/home/home_controller.dart';
 import 'package:ping_meme/screens/home/screens/home%20page/home_page.dart';
 import 'package:ping_meme/screens/home/widgets/bottom_bar_widget.dart';
@@ -37,10 +38,19 @@ class _HomeScreen extends State<HomeScreen> {
           // const ProfileScreen(),
           Container(
             color: AppColors.backgroundWhite,
+            child: Center(
+              child: IndicatorCustom(),
+            ),
           ),
-          Container(
-            color: Colors.blue,
+           Container(
+            color: AppColors.backgroundWhite,
+            child: Center(
+              child: IndicatorCustom(),
+            ),
           ),
+          // Container(
+          //   color: Colors.blue,
+          // ),
         ],
       ),
       bottomNavigationBar: BottomBar(
