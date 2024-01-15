@@ -17,6 +17,10 @@ class Assets {
   /// File path: .env
   static const String env = '.env';
 
+  /// File path: assets/icons/ic_file.svg
+  static const SvgGenImage iconsIcFile =
+      SvgGenImage('assets/icons/ic_file.svg');
+
   /// File path: assets/icons/ic_home.svg
   static const SvgGenImage iconsIcHome =
       SvgGenImage('assets/icons/ic_home.svg');
@@ -29,12 +33,23 @@ class Assets {
   static const SvgGenImage iconsIcProfile =
       SvgGenImage('assets/icons/ic_profile.svg');
 
+  /// File path: assets/icons/ic_research.svg
+  static const SvgGenImage iconsIcResearch =
+      SvgGenImage('assets/icons/ic_research.svg');
+
   /// File path: assets/images/OWS.ico
   static const String imagesOWS = 'assets/images/OWS.ico';
 
   /// List of all assets
-  static List<dynamic> get values =>
-      [env, iconsIcHome, iconsIcMarket, iconsIcProfile, imagesOWS];
+  static List<dynamic> get values => [
+        env,
+        iconsIcFile,
+        iconsIcHome,
+        iconsIcMarket,
+        iconsIcProfile,
+        iconsIcResearch,
+        imagesOWS
+      ];
 }
 
 class SvgGenImage {

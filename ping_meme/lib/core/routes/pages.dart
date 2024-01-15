@@ -1,7 +1,7 @@
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:ping_meme/core/routes/routes.dart';
-import 'package:ping_meme/screens/home/screens/homeScreens.dart';
+import 'package:ping_meme/screens/home/screens/home_screens.dart';
 
 abstract class AppPages {
   
