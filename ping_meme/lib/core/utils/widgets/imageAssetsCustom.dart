@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import 'package:ping_meme/core/utils/theme/colors.dart';
 
 class CustomImage extends StatelessWidget {
@@ -111,10 +112,12 @@ class CustomImage2 extends StatelessWidget {
 }
 
 class CustomImage3 extends StatelessWidget {
+  final bool isEven;
   final String path;
   final String name;
-  final double height ; 
-  final double width ; 
+  final double height;
+  final double width;
+  final aspectRatio  ; 
   final double radius;
   final double fontSize;
   final BoxFit fit;
@@ -122,21 +125,23 @@ class CustomImage3 extends StatelessWidget {
       {super.key,
       required this.path,
       this.name = '',
-      this.height = 250 ,  
-      this.width = 200 ,   
+      this.aspectRatio =  2.1/3 ,
+      this.isEven  = false , 
+      this.height = 230,
+      this.width = 180,
       this.radius = 0,
       this.fontSize = 16,
       this.fit = BoxFit.cover});
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 2/3,
+      aspectRatio: aspectRatio,
       child: ClipRRect(
           borderRadius: BorderRadius.circular(radius),
           child: Image.asset(
             path,
             width: width,
-            fit:fit,
+            fit: fit,
             height: height,
           )),
     );

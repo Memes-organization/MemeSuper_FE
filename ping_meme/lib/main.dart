@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ping_meme/core/routes/pages.dart';
-import 'package:ping_meme/core/routes/routes.dart';
 import 'package:ping_meme/core/utils/theme/colors.dart';
-
-import 'package:ping_meme/data/test/startScreen.dart';
-import 'package:ping_meme/data/injection/injection.dart';
 
 void main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

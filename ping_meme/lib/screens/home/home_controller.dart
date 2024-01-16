@@ -6,6 +6,8 @@ class HomeController extends GetxController {
   final PageController pageController = PageController(initialPage: 0);
 
   late Rx<TabController> tabController;
+  late  Rx<ScrollController> scrollController ;  
+  RxBool showBottomBar = true.obs;
 
   final tabIndex = 0.obs;
 
@@ -14,6 +16,15 @@ class HomeController extends GetxController {
 
   // }
 
+  void onSrollOverNestedListTrue() {
+    showBottomBar.value = true;
+  }
+
+
+  void onSrollOverNestedListFalse() {
+    showBottomBar.value = false;
+  }
+
   void initTabController(TickerProvider provider) {
     tabController = Rx(
       TabController(
@@ -21,10 +32,15 @@ class HomeController extends GetxController {
     );
   }
 
+  void initScrollController()
+  {
+    scrollController.value =  ScrollController() ;  
+  }
+
   List<Widget> tabViewHome() {
-   return  ListComponentTabConstant.listQuickFilterHome.map((e) {
-                return Tab(text: e["name"]);
-              }).toList(); 
+    return ListComponentTabConstant.listQuickFilterHome.map((e) {
+      return Tab(text: e["name"]);
+    }).toList();
   }
 
   int getTabBarLength() => ListComponentTabConstant.listQuickFilterHome.length;

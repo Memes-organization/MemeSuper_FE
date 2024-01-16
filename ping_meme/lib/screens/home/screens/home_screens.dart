@@ -22,40 +22,41 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      resizeToAvoidBottomInset: false,
-      body: PageView(
-        controller: _controller.pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: [
-          FeedPage(),
-          // const MarketScreen(),f
-          // const ProfileScreen(),
-          Container(
-            color: AppColors.backgroundWhite,
-            child: Center(
-              child: IndicatorCustom(),
+        backgroundColor: AppColors.background,
+        resizeToAvoidBottomInset: false,
+        body: PageView(
+          controller: _controller.pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            FeedPage(),
+            // const MarketScreen(),f
+            // const ProfileScreen(),
+            Container(
+              color: AppColors.backgroundWhite,
+              child: Center(
+                child: IndicatorCustom(),
+              ),
             ),
-          ),
-           Container(
-            color: AppColors.backgroundWhite,
-            child: Center(
-              child: IndicatorCustom(),
+            Container(
+              color: AppColors.backgroundWhite,
+              child: Center(
+                child: IndicatorCustom(),
+              ),
             ),
-          ),
-          // Container(
-          //   color: Colors.blue,
-          // ),
-        ],
-      ),
-      bottomNavigationBar: BottomBar(
-        controller: _controller,
-      ),
-    );
+            // Container(
+            //   color: Colors.blue,
+            // ),
+          ],
+        ),
+        bottomNavigationBar: BottomBar(
+          controller: _controller,
+        ));
   }
 }

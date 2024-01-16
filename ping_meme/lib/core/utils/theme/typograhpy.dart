@@ -20,6 +20,17 @@ class AppTypography {
     color: AppColors.black
   );
 
+  static const bodyNormal = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textGrey
+  );
+  static const bodyNormalBold = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.black
+  );
+
   static const bodyRegularLight = TextStyle(
       fontSize: 14, fontWeight: FontWeight.normal, color: AppColors.primary);
 
