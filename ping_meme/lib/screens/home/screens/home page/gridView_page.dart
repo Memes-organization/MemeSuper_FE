@@ -17,7 +17,7 @@ class _GridView_Page extends State<GridView_Page> {
   final _controller = Get.find<HomeController>();
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=

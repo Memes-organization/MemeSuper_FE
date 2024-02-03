@@ -14,7 +14,7 @@ class HomeHeader extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            controller.onSrollOverNestedListTrue();
+            controller.onChangeNavigatorBar();
           },
           child: WrapperIconSVG(
             icon: Assets.iconsIcFile,

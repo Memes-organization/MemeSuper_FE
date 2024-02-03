@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ping_meme/core/utils/string_utils.dart';
+import 'package:ping_meme/screens/home/widgets/bottom_bar_widget.dart';
 
 class HomeController extends GetxController {
   final PageController pageController = PageController(initialPage: 0);
 
   late Rx<TabController> tabController;
-  late  Rx<ScrollController> scrollController ;  
+  final Rx<double> heighNavigator = 60.0.obs;
+  late Rx<ScrollController> scrollController;
   RxBool showBottomBar = true.obs;
 
   final tabIndex = 0.obs;
@@ -16,13 +18,19 @@ class HomeController extends GetxController {
 
   // }
 
+
+
   void onSrollOverNestedListTrue() {
     showBottomBar.value = true;
   }
 
-
   void onSrollOverNestedListFalse() {
     showBottomBar.value = false;
+  }
+
+  void onChangeNavigatorBar({bool? isShow}) {
+    if (isShow == null) showBottomBar.value = !showBottomBar.value;
+
   }
 
   void initTabController(TickerProvider provider) {
@@ -32,9 +40,8 @@ class HomeController extends GetxController {
     );
   }
 
-  void initScrollController()
-  {
-    scrollController.value =  ScrollController() ;  
+  void initScrollController() {
+    scrollController.value = ScrollController();
   }
 
   List<Widget> tabViewHome() {

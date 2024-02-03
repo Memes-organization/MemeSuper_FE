@@ -9,7 +9,6 @@ import 'package:ping_meme/core/utils/widgets/imageAssetsCustom.dart';
 import 'package:ping_meme/core/utils/widgets/indicatorCustom.dart';
 
 import 'package:ping_meme/screens/home/home_controller.dart';
-import 'package:ping_meme/screens/home/screens/home%20page/gridView_page.dart';
 import 'package:ping_meme/screens/home/widgets/home_header_widget.dart';
 
 class FeedPage extends StatefulWidget {
@@ -21,21 +20,21 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
   final HomeController _controller = Get.find<HomeController>();
-  final _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
 
     _controller.initTabController(this);
-     _scrollController.addListener(() {
-     _scrollController.addListener(() {
-      if (_scrollController.position.pixels >=
-          _scrollController.position.maxScrollExtent - 400) {
-        _controller.onSrollOverNestedListTrue();
-      } else
-        _controller.onSrollOverNestedListFalse();
-    });
-    });
+    // _scrollController.addListener(() {
+    //   _scrollController.addListener(() {
+    //     if (_scrollController.position.pixels >=
+    //         _scrollController.position.maxScrollExtent - 400) {
+    //       _controller.onSrollOverNestedListTrue();
+    //     } else
+    //       _controller.onSrollOverNestedListFalse();
+    //   });
+    // });
   }
 
   @override
@@ -46,9 +45,9 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
           horizontal: Constant.paddingHorizontal,
         ),
         child: NestedScrollView(
-          floatHeaderSlivers: true,
-          controller: _scrollController,
+          floatHeaderSlivers: false,
           headerSliverBuilder: (context, isScroll) {
+             
             return [
               SliverToBoxAdapter(
                 child: HomeHeader(),
@@ -81,7 +80,8 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
                     children: [
                       tabViewAll_Mock(),
                       // GridView_Page(),
-                      loadingdataTMP(),
+                      tabViewAll_Mock(),
+
                       loadingdataTMP(),
                       loadingdataTMP(),
                       loadingdataTMP(),
@@ -97,7 +97,6 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
 
   tabViewAll_Mock() {
     return GridView.builder(
-        shrinkWrap: true,
         itemCount: 12,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

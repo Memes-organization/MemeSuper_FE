@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:ping_meme/core/utils/string_utils.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import 'package:ping_meme/core/utils/theme/assets.gen.dart';
 import 'package:ping_meme/core/utils/theme/colors.dart';
@@ -13,17 +12,17 @@ class BottomBar extends StatelessWidget {
   const BottomBar({required this.controller});
   @override
   Widget build(BuildContext context) {
-    // return Obx(() => AnimatedSlide(
-    //       offset:
-    //           controller.showBottomBar.value ? Offset.zero : const Offset(0, 2),
-    //       duration: Constant.durationAnimateSlide,
-    //       child: AnimatedOpacity(
-    //         duration: Constant.durationAnimateSlide,
-    //         opacity: controller.showBottomBar.value ? 1 : 0,
-    //         child: _bottomNavigator(),
-    //       ),
-    //     ));
-    return _bottomNavigator();
+    return Obx(() => AnimatedSlide(
+          offset:
+              controller.showBottomBar.value ? Offset.zero : const Offset(0, 2),
+          duration:Duration(microseconds: 200 ),
+          child: AnimatedOpacity(
+            duration: Duration(microseconds: 200) ,
+            opacity: controller.showBottomBar.value ? 1 : 0,
+            child: _bottomNavigator(),
+          ),
+        ));
+    // return _bottomNavigator();
     // return null ;
   }
 
@@ -31,11 +30,10 @@ class BottomBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           // color: Colors.red,
-          border: Border(top: BorderSide(color: AppColors.border, width: 0))),
+          border: Border(top: BorderSide(color: AppColors.backgroundWhite, width: 0))),
       child: BottomAppBar(
-          child: Obx(
-        () => SizedBox(
-          height: controller.showBottomBar.value ? 60 : 0,
+        child: SizedBox(
+          height: 60,
           child: BottomNavigationBar(
             backgroundColor: Colors.white,
             type: BottomNavigationBarType.fixed,
@@ -44,7 +42,7 @@ class BottomBar extends StatelessWidget {
             currentIndex: controller.tabIndex.value,
             onTap: controller.onTabChanged,
             items: [
-              _bottomNavigationBarItem(icon: Assets.iconsIcHome, title: 'home'),
+              _bottomNavigationBarItem(icon: Assets.iconsIcHome, title: 'Feed'),
               _bottomNavigationBarItem(
                   icon: Assets.iconsIcMarket, title: 'Market'),
               _bottomNavigationBarItem(
@@ -52,7 +50,7 @@ class BottomBar extends StatelessWidget {
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 }
