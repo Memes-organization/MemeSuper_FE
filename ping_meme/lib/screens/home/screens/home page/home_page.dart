@@ -24,17 +24,7 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
     _controller.initTabController(this);
-    // _scrollController.addListener(() {
-    //   _scrollController.addListener(() {
-    //     if (_scrollController.position.pixels >=
-    //         _scrollController.position.maxScrollExtent - 400) {
-    //       _controller.onSrollOverNestedListTrue();
-    //     } else
-    //       _controller.onSrollOverNestedListFalse();
-    //   });
-    // });
   }
 
   @override
@@ -44,52 +34,41 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
         padding: EdgeInsets.symmetric(
           horizontal: Constant.paddingHorizontal,
         ),
-        child: NestedScrollView(
-          floatHeaderSlivers: false,
-          headerSliverBuilder: (context, isScroll) {
-             
-            return [
-              SliverToBoxAdapter(
-                child: HomeHeader(),
-              ),
-            ];
-          },
-          body: Column(
-            children: [
-              TabBar(
-                isScrollable: true,
-                indicatorWeight: 1,
-                padding: EdgeInsets.only(bottom: 10),
-                tabAlignment: TabAlignment.start,
-                automaticIndicatorColorAdjustment: false,
-                indicatorSize: TabBarIndicatorSize.label,
-                indicator: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    border: Border(
-                        bottom:
-                            BorderSide(width: 0.5, color: AppColors.primary))),
-                labelStyle: AppTypography.bodyRegularLight,
-                unselectedLabelColor: AppColors.black,
-                controller: _controller.tabController.value,
-                tabs: _controller.tabViewHome(),
-              ),
-              Expanded(
-                child: TabBarView(
-                    physics: NeverScrollableScrollPhysics(),
-                    controller: _controller.tabController.value,
-                    children: [
-                      tabViewAll_Mock(),
-                      // GridView_Page(),
-                      tabViewAll_Mock(),
-
-                      loadingdataTMP(),
-                      loadingdataTMP(),
-                      loadingdataTMP(),
-                      loadingdataTMP(),
-                    ]),
-              )
-            ],
-          ),
+        child: Column(
+          children: [
+            HomeHeader(),
+            TabBar(
+              isScrollable: true,
+              indicatorWeight: 1,
+              padding: EdgeInsets.only(bottom: 10),
+              tabAlignment: TabAlignment.start,
+              automaticIndicatorColorAdjustment: false,
+              indicatorSize: TabBarIndicatorSize.label,
+              indicator: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  border: Border(
+                      bottom:
+                          BorderSide(width: 0.5, color: AppColors.primary))),
+              labelStyle: AppTypography.bodyRegularLight,
+              unselectedLabelColor: AppColors.black,
+              controller: _controller.tabController.value,
+              tabs: _controller.tabViewHome(),
+            ),
+            Expanded(
+              child: TabBarView(
+                  physics: NeverScrollableScrollPhysics(),
+                  controller: _controller.tabController.value,
+                  children: [
+                    tabViewAll_Mock(),
+                    // GridView_Page(),
+                    tabViewAll_Mock(),
+                    loadingdataTMP(),
+                    loadingdataTMP(),
+                    loadingdataTMP(),
+                    loadingdataTMP(),
+                  ]),
+            )
+          ],
         ),
       ),
     );
@@ -98,6 +77,7 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
   tabViewAll_Mock() {
     return GridView.builder(
         itemCount: 12,
+        controller: _controller.scrollController,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 20,

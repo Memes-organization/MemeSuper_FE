@@ -1,37 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ping_meme/core/utils/string_utils.dart';
-import 'package:ping_meme/screens/home/widgets/bottom_bar_widget.dart';
 
 class HomeController extends GetxController {
   final PageController pageController = PageController(initialPage: 0);
 
   late Rx<TabController> tabController;
   final Rx<double> heighNavigator = 60.0.obs;
-  late Rx<ScrollController> scrollController;
-  RxBool showBottomBar = true.obs;
+  late  ScrollController scrollController ;  
+  RxBool showBottomFloatingAcctionButton = true.obs;
 
   final tabIndex = 0.obs;
 
-  // initTabController()
-  // {
-
-  // }
 
 
 
   void onSrollOverNestedListTrue() {
-    showBottomBar.value = true;
+    showBottomFloatingAcctionButton.value = true;
   }
 
   void onSrollOverNestedListFalse() {
-    showBottomBar.value = false;
+    showBottomFloatingAcctionButton.value = false;
   }
 
-  void onChangeNavigatorBar({bool? isShow}) {
-    if (isShow == null) showBottomBar.value = !showBottomBar.value;
-
-  }
 
   void initTabController(TickerProvider provider) {
     tabController = Rx(
@@ -41,7 +32,22 @@ class HomeController extends GetxController {
   }
 
   void initScrollController() {
-    scrollController.value = ScrollController();
+    scrollController = ScrollController();
+     double oldOffset = 0.0 ;  
+    scrollController.addListener(() {
+        
+       
+        if(scrollController.offset > 100 ) 
+        {
+          if(scrollController.offset > oldOffset) 
+          {
+            onSrollOverNestedListTrue() ; 
+          }else {
+            onSrollOverNestedListFalse(); 
+          }
+        }
+           oldOffset = scrollController.offset ; 
+     });
   }
 
   List<Widget> tabViewHome() {
