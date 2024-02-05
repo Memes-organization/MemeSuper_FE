@@ -22,9 +22,9 @@ class _GridView_Page extends State<GridView_Page> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent - 400) {
-        _controller.onSrollOverNestedListTrue();
+        _controller.onScrollOverNestedListTrue();
       } else
-        _controller.onSrollOverNestedListFalse();
+        _controller.onScrollOverNestedListFalse();
     });
   }
 

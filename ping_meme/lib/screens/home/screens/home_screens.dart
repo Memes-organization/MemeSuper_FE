@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ping_meme/core/routes/routes.dart';
 import 'package:ping_meme/core/utils/theme/assets.gen.dart';
 import 'package:ping_meme/core/utils/theme/colors.dart';
 import 'package:ping_meme/core/utils/theme/styles.dart';
@@ -68,14 +69,15 @@ class _HomeScreen extends State<HomeScreen> {
     return Obx(() {
       return AnimatedSlide(
         duration: Duration(milliseconds: 200),
-        offset: _controller.showBottomFloatingAcctionButton.value
+        offset: _controller.showBottomFloatingActionButton.value
             ? Offset.zero
             : Offset(0, 2),
         child: AnimatedOpacity(
             duration: Duration(milliseconds: 200),
-            opacity: _controller.showBottomFloatingAcctionButton.value ? 1 : 0,
+            opacity: _controller.showBottomFloatingActionButton.value ? 1 : 0,
             child: Container(
               padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(bottom: 30),
               height: 76,
               width: 144,
               decoration: AppStyles.borderSideFloatingActionButton,
@@ -88,16 +90,19 @@ class _HomeScreen extends State<HomeScreen> {
                           icon: Assets.iconsIcResearch,
                         ),
                         decoration:
-                            AppStyles.borderConponentFloatingActionButton),
+                            AppStyles.borderComponentFloatingActionButton),
                   ),
                   Expanded(child: Container()),
                   GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.document); 
+                    },
                     child: Container(
                       padding: EdgeInsets.all(5),
                       child: WrapperIconSVG(
                         icon: Assets.iconsIcFile,
                       ),
-                      decoration: AppStyles.borderConponentFloatingActionButton,
+                      decoration: AppStyles.borderComponentFloatingActionButton,
                     ),
                   )
                 ],

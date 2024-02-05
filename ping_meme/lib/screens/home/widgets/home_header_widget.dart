@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hidable/hidable.dart';
+import 'package:ping_meme/core/routes/routes.dart';
 import 'package:ping_meme/core/utils/theme/assets.gen.dart';
 import 'package:ping_meme/core/utils/theme/typograhpy.dart';
 import 'package:ping_meme/core/utils/widgets/wrapper_icon_svg.dart';
@@ -21,7 +22,8 @@ class HomeHeader extends StatelessWidget {
             onTap: () {
               // controller.onChangeNavigatorBar();
               // controller.onSrollOverNestedListTrue() ;
-              controller.onSrollOverNestedListFalse();
+              // controller.onScrollOverNestedListFalse();
+              Get.toNamed(Routes.document) ; 
             },
             child: WrapperIconSVG(
               icon: Assets.iconsIcFile,
@@ -36,7 +38,7 @@ class HomeHeader extends StatelessWidget {
             icon: Assets.iconsIcResearch,
           ),
           onTap: () {
-            controller.onSrollOverNestedListTrue();
+            controller.onScrollOverNestedListTrue();
           },
           )
         ],

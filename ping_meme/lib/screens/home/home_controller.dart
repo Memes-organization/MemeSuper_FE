@@ -8,19 +8,19 @@ class HomeController extends GetxController {
   late Rx<TabController> tabController;
   final Rx<double> heighNavigator = 60.0.obs;
   late  ScrollController scrollController ;  
-  RxBool showBottomFloatingAcctionButton = true.obs;
+  RxBool showBottomFloatingActionButton = true.obs;
 
   final tabIndex = 0.obs;
 
 
 
 
-  void onSrollOverNestedListTrue() {
-    showBottomFloatingAcctionButton.value = true;
+  void onScrollOverNestedListTrue() {
+    showBottomFloatingActionButton.value = true;
   }
 
-  void onSrollOverNestedListFalse() {
-    showBottomFloatingAcctionButton.value = false;
+  void onScrollOverNestedListFalse() {
+    showBottomFloatingActionButton.value = false;
   }
 
 
@@ -41,9 +41,9 @@ class HomeController extends GetxController {
         {
           if(scrollController.offset > oldOffset) 
           {
-            onSrollOverNestedListTrue() ; 
+            onScrollOverNestedListTrue() ; 
           }else {
-            onSrollOverNestedListFalse(); 
+            onScrollOverNestedListFalse(); 
           }
         }
            oldOffset = scrollController.offset ; 
