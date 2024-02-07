@@ -127,7 +127,7 @@ class CustomImage3 extends StatelessWidget {
       this.name = '',
       this.aspectRatio =  2.1/3 ,
       this.isEven  = false , 
-      this.height = 230,
+      this.height =  230 , 
       this.width = 180,
       this.radius = 0,
       this.fontSize = 16,

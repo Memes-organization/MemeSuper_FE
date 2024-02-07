@@ -104,10 +104,10 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
           "Image $index",
           style: AppTypography.bodyNormal,
         ),
-        Text(
-          "Miễn phí",
-          style: AppTypography.bodyNormalBold,
-        )
+        // Text(
+        //   "Miễn phí",
+        //   style: AppTypography.bodyNormalBold,
+        // )
       ],
     );
   }

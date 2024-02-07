@@ -9,9 +9,8 @@ class HomeController extends GetxController {
   final Rx<double> heighNavigator = 60.0.obs;
   late  ScrollController scrollController ;  
   RxBool showBottomFloatingActionButton = true.obs;
-
   final tabIndex = 0.obs;
-
+  final isSearchBar = false.obs ;   
 
 
 

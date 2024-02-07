@@ -1,6 +1,6 @@
 # ping_meme
 
-A new Flutter project.
+A new potential project with my team.
 
 ## Getting Started
 

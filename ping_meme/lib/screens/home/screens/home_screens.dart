@@ -50,9 +50,6 @@ class _HomeScreen extends State<HomeScreen> {
               child: IndicatorCustom(),
             ),
           ),
-          // Container(
-          //   color: Colors.blue,
-          // ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
