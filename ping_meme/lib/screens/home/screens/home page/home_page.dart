@@ -96,7 +96,10 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
       children: [
         Container(
           child: CustomImage3(
-            radius: 12,
+            aspectRatio: 200 / 270 ,
+            height: MediaQuery.sizeOf(context).height / 4 ,
+            width: MediaQuery.sizeOf(context).width / 3,
+            radius: 12 , 
             path: "assets/images/mock/image_$index.jpg",
           ),
         ),
@@ -104,10 +107,10 @@ class _FeedPage extends State<FeedPage> with TickerProviderStateMixin {
           "Image $index",
           style: AppTypography.bodyNormal,
         ),
-        // Text(
-        //   "Miễn phí",
-        //   style: AppTypography.bodyNormalBold,
-        // )
+        Text(
+          "Miễn phí",
+          style: AppTypography.bodyNormalBold,
+        )
       ],
     );
   }

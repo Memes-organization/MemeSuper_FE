@@ -81,6 +81,10 @@ class _HomeScreen extends State<HomeScreen> {
               child: Row(
                 children: [
                   GestureDetector(
+                    onTap: () {
+                      _controller.showBottomFloatingActionButton .value = false ; 
+                       _controller.isSearchBar.value = true ; 
+                    },
                     child: Container(
                         padding: EdgeInsets.all(5),
                         child: WrapperIconSVG(
