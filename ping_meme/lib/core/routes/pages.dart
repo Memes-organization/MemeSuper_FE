@@ -1,19 +1,20 @@
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:ping_meme/core/routes/routes.dart';
+import 'package:ping_meme/data/test/startScreen.dart';
 import 'package:ping_meme/screens/file%20saving/screen/file_saving_screen.dart';
 import 'package:ping_meme/screens/home/screens/home_screens.dart';
 
 abstract class AppPages {
   
   static final List<GetPage> pages = [
-    // GetPage(
-    //   name: Routes.root,
-    //   page: () => const StartScreen(),
-    //   // binding: OnBoardBinding(),
-    // ),
     GetPage(
       name: Routes.root,
+      page: () => const StartScreen(),
+      // binding: OnBoardBinding(),
+    ),
+    GetPage(
+      name: Routes.home,
       page: () =>  HomeScreen(),
       // binding: OnBoardBinding(),
     ),
